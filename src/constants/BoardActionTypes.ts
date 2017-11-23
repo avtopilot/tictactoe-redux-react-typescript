@@ -1,0 +1,1 @@
+export const SET_SYMBOL = 'SET_SYMBOL';

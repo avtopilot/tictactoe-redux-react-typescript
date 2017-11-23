@@ -1,3 +1,4 @@
+import { setSymbol } from '../actions/boardActions';
 import { Board } from '../components/Board';
 import { Dispatch, connect } from 'react-redux';
 import * as React from 'react';
@@ -6,17 +7,21 @@ import { ICell } from '../models/index';
 
 interface TicTacToeProps {
   board: ICell[];
-  dispatch: Dispatch<{}>;
+  onClick: (id: number) => { type: string; id: number };
 }
 
-const TicTacToeBoard: React.SFC<TicTacToeProps> = ({board, dispatch}) => {
+const TicTacToeBoard: React.SFC<TicTacToeProps> = ({board, onClick}) => {
   return (
-    <Board board={board}/>
+    <Board board={board} onClick={onClick}/>
   );
 };
 
-const mapStateToProps = (state: BoardState) => ({
-  board: state.board
+const mapStateToProps = (state: {board: BoardState}) => ({
+  board: state.board.cells
 });
 
-export default connect(mapStateToProps)(TicTacToeBoard);
+const mapDispatchToProps = (dispatch: Dispatch<{}>) => ({
+  onClick: (id: number) => dispatch(setSymbol(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TicTacToeBoard);

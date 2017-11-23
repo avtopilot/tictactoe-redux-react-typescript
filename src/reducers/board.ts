@@ -1,20 +1,17 @@
 import { BoardState } from '../models/boardState';
 import { ICell } from '../models/index';
-import { Action, combineReducers } from 'redux';
+import { Action, handleActions } from 'redux-actions';
+import { SET_SYMBOL } from '../constants/BoardActionTypes';
 
 const initialState: BoardState = {
-  board: [...Array(9).fill(null)].map((e, i) => <ICell> {id: i + 1, symbol: '', isEmpty: true})
+  cells: [...Array(9).fill(null)].map((e, i) => <ICell> {id: i + 1, symbol: '', isEmpty: true})
 };
 
-const board = (state = initialState.board, action: Action): ICell[] => {
-  switch (action.type) {
-    case 'SET_SYMBOL':
-      return state;
-    default: 
-      return state;
+const board = handleActions<BoardState, ICell>({
+  [SET_SYMBOL]: (state: BoardState, action: Action<ICell>): BoardState => {
+    return state;
   }
-};
+// tslint:disable-next-line:align
+}, initialState);
 
-const boardReducers = combineReducers({board});
-
-export default boardReducers;
+export default board;

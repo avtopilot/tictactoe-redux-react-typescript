@@ -6,10 +6,22 @@ import { ICell } from '../../models/index';
 
 interface BoardProps {
   board: ICell[];
+  onClick: (id: number) => { type: string; id: number; };
 }
 
-const boardRow = (rowCells: ICell[], key: number) => {
-  const renderSquare = (cell: ICell) => <Cell value={cell.symbol} key={cell.id}/>;
+const boardRow = (
+  rowCells: ICell[],
+  key: number,
+  onClick: (id: number) => { type: string; id: number; }
+) => {
+  const renderSquare = (cell: ICell) => (
+    <Cell 
+      value={cell.symbol}
+      id={cell.id}
+      onClick={onClick}
+      key={cell.id}
+    />
+  );
 
   return (
     <div className="board-row" key={key}>
@@ -18,14 +30,12 @@ const boardRow = (rowCells: ICell[], key: number) => {
     );
 };
 
-export const Board: React.SFC<BoardProps> = ({board}) => {
-  // tslint:disable-next-line:no-console
-  console.log(board);
+export const Board: React.SFC<BoardProps> = ({board, onClick}) => {
   const boardChunk = chunk(board || [], 3);
   return (
     <div>
       {boardChunk.map((b, i) => (
-        boardRow(b, i)
+        boardRow(b, i, onClick)
       ))}
     </div>
   );
