@@ -1,5 +1,7 @@
+import { SymbolType } from './index';
+
 export type ICell = {
   id: number;
-  symbol: string;
+  symbol: SymbolType | '';
   isEmpty: boolean;
 };

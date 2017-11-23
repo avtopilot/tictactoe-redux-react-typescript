@@ -1,8 +1,8 @@
 import { SET_SYMBOL } from '../constants/BoardActionTypes';
 import { createAction } from 'redux-actions';
-import { ICell } from '../models/index';
+import { ICell, SymbolType } from '../models/index';
 
-export const setSymbol = createAction<ICell, number>(
+export const setSymbol = createAction<ICell, number, SymbolType>(
   SET_SYMBOL,
-  (id: number) => ({id: id, symbol: '', isEmpty: false})
+  (id: number, symbol: SymbolType) => ({id: id, symbol: symbol, isEmpty: false})
 );
