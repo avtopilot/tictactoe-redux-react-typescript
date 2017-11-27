@@ -3,10 +3,10 @@ import './style.css';
 import { SymbolType } from '../../models/index';
 
 interface CellProps {
-  value: string;
+  value: string | null;
   id: number;
   turn: SymbolType;
-  onClick: (id: number, symbol: SymbolType) => { type: string; id: number };
+  onClick: (id: number, symbol: SymbolType) => void;
 }
 
 export const Cell: React.SFC<CellProps> = ({

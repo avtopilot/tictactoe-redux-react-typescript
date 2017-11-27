@@ -15,6 +15,7 @@ const TicTacToeBoard: React.SFC<TicTacToeProps> = ({board, onClick}) => {
     <Board 
       board={board.cells}
       turn={board.turn}
+      winner={board.winner}
       onClick={onClick}
     />
   );

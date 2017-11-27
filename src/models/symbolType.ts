@@ -1,1 +1,1 @@
-export type SymbolType = 'O' | 'X';
+export type SymbolType = 'O' | 'X' | null;

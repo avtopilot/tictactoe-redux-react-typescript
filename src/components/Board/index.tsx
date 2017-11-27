@@ -7,14 +7,15 @@ import { ICell, SymbolType } from '../../models/index';
 interface BoardProps {
   board: ICell[];
   turn: SymbolType;
-  onClick: (id: number, symbol: SymbolType) => { type: string; id: number; };
+  winner: SymbolType;
+  onClick: (id: number, symbol: SymbolType) => void;
 }
 
 const boardRow = (
   rowCells: ICell[],
   key: number,
   turn: SymbolType,
-  onClick: (id: number, symbol: SymbolType) => { type: string; id: number; }
+  onClick: (id: number, symbol: SymbolType) => void
 ) => {
   const renderSquare = (cell: ICell) => (
     <Cell 
@@ -33,13 +34,16 @@ const boardRow = (
     );
 };
 
-export const Board: React.SFC<BoardProps> = ({board, turn, onClick}) => {
+export const Board: React.SFC<BoardProps> = ({board, turn, winner, onClick}) => {
   const boardChunk = chunk(board || [], 3);
   return (
     <div>
       {boardChunk.map((b, i) => (
         boardRow(b, i, turn, onClick)
       ))}
+      <div>
+        {winner}
+      </div>
     </div>
   );
 };
