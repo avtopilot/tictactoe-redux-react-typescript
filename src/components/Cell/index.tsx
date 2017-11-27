@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SymbolType } from "../../models/index";
+import { SymbolType } from "../../types/index";
 import "./style.css";
 
 interface CellProps {

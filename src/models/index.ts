@@ -1,3 +1,2 @@
 export * from './boardState';
-export * from './cellType';
-export * from './symbolType';
+export * from './cellModel';

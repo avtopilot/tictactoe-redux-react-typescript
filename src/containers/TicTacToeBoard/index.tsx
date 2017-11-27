@@ -3,12 +3,13 @@ import { connect, Dispatch } from "react-redux";
 import { Action } from "redux-actions";
 import { setSymbol } from "../../actions/boardActions";
 import { Board } from "../../components/Board/index";
-import { BoardState, ICell, SymbolType } from "../../models/index";
+import { BoardState, CellModel } from "../../models/index";
+import { SymbolType } from "../../types/index";
 import "./style.css";
 
 interface TicTacToeProps {
   board: BoardState;
-  onClick: (id: number, symbol: SymbolType) => Action<ICell>;
+  onClick: (id: number, symbol: SymbolType) => Action<CellModel>;
 }
 
 const TicTacToeBoard: React.SFC<TicTacToeProps> = ({ board, onClick }) => {

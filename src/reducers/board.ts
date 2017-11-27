@@ -1,15 +1,15 @@
 import { Action, handleActions } from 'redux-actions';
 import { SET_SYMBOL } from '../constants/BoardActionTypes';
 import { BoardState } from '../models/boardState';
-import { ICell } from '../models/index';
+import { CellModel } from '../models/index';
 
 const initialState: BoardState = {
-  cells: [...Array(9).fill(null)].map((e, i) => ({id: i + 1, symbol: null} as ICell)),
+  cells: [...Array(9).fill(null)].map((e, i) => ({id: i + 1, symbol: null} as CellModel)),
   turn: 'X',
   winner: null
 };
 
-const calculateWinner = (squares: ICell[]) => {
+const calculateWinner = (squares: CellModel[]) => {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -31,8 +31,8 @@ const calculateWinner = (squares: ICell[]) => {
   return null;
 };
 
-export default handleActions<BoardState, ICell>({
-  [SET_SYMBOL]: (state: BoardState, action: Action<ICell>): BoardState => {
+export default handleActions<BoardState, CellModel>({
+  [SET_SYMBOL]: (state: BoardState, action: Action<CellModel>): BoardState => {
     const cell = action.payload!;
     
     if (!state.cells[cell.id - 1].symbol) {

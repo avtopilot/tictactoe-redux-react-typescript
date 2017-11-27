@@ -1,22 +1,23 @@
 import * as React from "react";
-import { ICell, SymbolType } from "../../models/index";
+import { CellModel } from "../../models/index";
+import { SymbolType } from "../../types/index";
 import { chunk } from "../../utils/array";
 import { Cell } from "../Cell/index";
 import "./style.css";
 
 interface BoardProps {
-  board: ICell[];
+  board: CellModel[];
   turn: SymbolType;
   onClick: (id: number, symbol: SymbolType) => void;
 }
 
 const boardRow = (
-  rowCells: ICell[],
+  rowCells: CellModel[],
   key: number,
   turn: SymbolType,
   onClick: (id: number, symbol: SymbolType) => void
 ) => {
-  const renderSquare = (cell: ICell) => (
+  const renderSquare = (cell: CellModel) => (
     <Cell
       value={cell.symbol}
       id={cell.id}
