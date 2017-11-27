@@ -1,10 +1,10 @@
-import { BoardState } from '../models/boardState';
-import { ICell } from '../models/index';
 import { Action, handleActions } from 'redux-actions';
 import { SET_SYMBOL } from '../constants/BoardActionTypes';
+import { BoardState } from '../models/boardState';
+import { ICell } from '../models/index';
 
 const initialState: BoardState = {
-  cells: [...Array(9).fill(null)].map((e, i) => <ICell> {id: i + 1, symbol: null, isEmpty: true}),
+  cells: [...Array(9).fill(null)].map((e, i) => ({id: i + 1, symbol: null} as ICell)),
   turn: 'X',
   winner: null
 };
@@ -20,8 +20,7 @@ const calculateWinner = (squares: ICell[]) => {
     [0, 4, 8],
     [2, 4, 6]
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+  for (const [a, b, c] of lines) {
     if (squares[a].symbol !== null && 
         squares[a].symbol === squares[b].symbol && 
         squares[a].symbol === squares[c].symbol
@@ -50,5 +49,4 @@ export default handleActions<BoardState, ICell>({
 
     return state;
   }
-// tslint:disable-next-line:align
 }, initialState);

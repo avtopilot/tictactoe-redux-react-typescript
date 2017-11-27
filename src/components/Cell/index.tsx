@@ -1,6 +1,6 @@
-import * as React from 'react';
-import './style.css';
-import { SymbolType } from '../../models/index';
+import * as React from "react";
+import { SymbolType } from "../../models/index";
+import "./style.css";
 
 interface CellProps {
   value: string | null;
@@ -9,12 +9,7 @@ interface CellProps {
   onClick: (id: number, symbol: SymbolType) => void;
 }
 
-export const Cell: React.SFC<CellProps> = ({
-  value,
-  id,
-  turn,
-  onClick
-}) => {
+export const Cell: React.SFC<CellProps> = ({ value, id, turn, onClick }) => {
   const handleOnClick = () => {
     onClick(id, turn);
   };
